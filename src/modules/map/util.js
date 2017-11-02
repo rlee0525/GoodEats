@@ -92,7 +92,6 @@ export const getRestaurants = (center, props) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       results = results.sort((a, b) => b.rating - a.rating);
       props.receiveResults(results);
-
       for (let i = 0; i < results.length; i++) {
         if (results[i].rating > 4.0) createMarker(results[i]);
       }

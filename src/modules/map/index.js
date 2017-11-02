@@ -5,10 +5,6 @@ import { receiveResults } from '../result/actions';
 import { initMap, getRestaurants } from './util';
 
 class Map extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     initMap(this.props.query.center);
     getRestaurants(this.props.query.center, this.props);

@@ -1,6 +1,6 @@
 import { RECEIVE_RESULTS } from './actions';
 
-const ResultsReducer = (state = {}, action) => {
+const ResultsReducer = (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_RESULTS:

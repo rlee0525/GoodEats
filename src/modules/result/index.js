@@ -15,15 +15,18 @@ class Result extends React.Component {
   }
 
   renderResults() {
-    
+    let results = this.props.results;
+
+    return results.map((result, idx) => (
+      <ResultList key={idx} result={result} />
+    ));
   }
 
   render() {
-    console.log(this.props.results);
     return (
       <div className="result-container">
         <div className="result-list">
-          Hi
+          {this.renderResults()}
         </div>
         <Map />
       </div>
