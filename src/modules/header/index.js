@@ -13,8 +13,6 @@ class Header extends React.Component {
         <div className="header-right">
           <ul className="portfolio-links">
             <li><a href="https://github.com/rlee0525">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/rlee0525">LinkedIn</a></li>
-            <li><a href="http://www.raymondlee.io">Portfolio</a></li>
           </ul>
         </div>
       </div>

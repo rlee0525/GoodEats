@@ -1,7 +1,9 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import Header from './modules/header';
-import Home from './modules/home';
+import Search from './modules/search';
+import Result from './modules/result';
 
 import './App.css';
 
@@ -10,7 +12,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Home />
+        <Route exact path="/" component={Search} />
+        <Route path="/result" component={Result} />
       </div>
     );
   }
