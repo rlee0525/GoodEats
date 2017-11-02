@@ -41,9 +41,8 @@ class Search extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let address = this.state.address;
     let center = this.state.center;
-    let query = { address, center };
+    let query = { center };
 
     this.props.queryPlaces(query);
     this.props.history.push('result');

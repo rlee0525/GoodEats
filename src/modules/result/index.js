@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Map from '../map';
+import { ResultList } from './subcomponents';
 
 class Result extends React.Component {
   constructor(props) {
@@ -13,20 +14,26 @@ class Result extends React.Component {
     };
   }
 
+  renderResults() {
+    
+  }
+
   render() {
+    console.log(this.props.results);
     return (
       <div className="result-container">
         <div className="result-list">
           Hi
         </div>
-        <Map center={this.state.center} address={this.state.address} />
+        <Map />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ query }) => ({
-  query
+const mapStateToProps = ({ query, results }) => ({
+  query,
+  results
 });
 
 const mapDispatchToProps = (dispatch) => ({

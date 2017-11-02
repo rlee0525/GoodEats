@@ -28,10 +28,10 @@ const style = {
 const google = window.google;
 let map, options, service, infowindow, location;
 
-export const initMap = () => {
+export const initMap = (center) => {
   map = document.getElementById('google-map');
   options = {
-    center: { lat: 37.783052, lng: -122.39103 },
+    center,
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   };
@@ -53,7 +53,7 @@ export const createMarker = (place) => {
   let url = "http://res.cloudinary.com/rlee0525/image/upload/v1509659284/no-image_mbwhht.png";
   if (place.photos[0] !== 'undefined') {
     url = place.photos[0].getUrl({
-      maxWidth: 50,
+      maxWidth: 100,
       maxHeight: 50
     });
   }
@@ -67,7 +67,6 @@ export const createMarker = (place) => {
     '</div>';
     
   google.maps.event.addListener(marker, 'mouseover', function () {
-    console.log(place);
     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
     infowindow.setContent(content);
     infowindow.open(map, this);
@@ -79,7 +78,7 @@ export const createMarker = (place) => {
   });
 };
 
-export const getRestaurants = (center) => {
+export const getRestaurants = (center, props) => {
   location = new google.maps.LatLng(center.lat, center.lng);
 
   let request = {
@@ -91,20 +90,12 @@ export const getRestaurants = (center) => {
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch(request, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+      results = results.sort((a, b) => b.rating - a.rating);
+      props.receiveResults(results);
+
       for (let i = 0; i < results.length; i++) {
         if (results[i].rating > 4.0) createMarker(results[i]);
       }
     }
   });
 };
-
-
-
-
-
-
-
-
-
-
-
