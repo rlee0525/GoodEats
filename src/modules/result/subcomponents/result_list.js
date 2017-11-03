@@ -24,6 +24,8 @@ class ResultListItem extends React.Component {
       price += "$";
     }
 
+    if (!priceLevel) price = "N/A";
+
     let status = openNow ? <span className="green">Open</span> : <span className="red">Closed</span>;
 
     return (
