@@ -211,6 +211,9 @@
 #result-list-direction-container {
   margin: 20px;
 }
+.adp-directions {
+  width: 100%;
+}
 .adp-placemark {
   margin: 0 !important;
 }
