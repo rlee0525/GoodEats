@@ -12,6 +12,7 @@ class Map extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props.query.center !== newProps.query.center) {
+      initMap(newProps.query.center);
       getRestaurants(newProps.query.center, this.props);
     }
   }

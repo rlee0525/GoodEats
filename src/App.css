@@ -86,7 +86,7 @@
   height: calc(100vh - 50px);
   width: 100%;
 }
-.result-list-container {
+#result-list-container {
   flex: 2;
   overflow-y: scroll;
 }
@@ -203,6 +203,22 @@
 }
 .red {
   color: red;
+}
+#result-list-direction-container {
+  margin: 20px;
+}
+.adp-placemark {
+  margin: 0 !important;
+}
+.adp-summary {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+.adp-substep {
+  padding: 0.8em 10px 0.8em 10px !important;
+}
+.adp-legal {
+  display: none;
 }
 
 /* Loading */

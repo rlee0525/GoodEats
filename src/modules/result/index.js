@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import Map from '../map';
 import Loading from '../loading';
+import { SearchBar } from '../search/subcomponents';
+import { queryPlaces } from '../search/actions';
 import { ResultListItem } from './subcomponents';
 
 class Result extends React.Component {
@@ -23,17 +25,19 @@ class Result extends React.Component {
   }
 
   renderResults() {
-    let results = this.props.results;
+    let { query, results } = this.props;
     
     return results.filter(result => result.rating > 4.0).map((result, idx) => (
-      <ResultListItem key={idx} result={result} />
+      <ResultListItem key={idx} result={result} query={query} />
     ));
   }
 
   render() {
     return (
       <div className="result-container">
-        <div className="result-list-container">
+        <div id="result-list-container">
+          <SearchBar {...this.props} />
+          <div id="result-list-direction-container"></div>
           {(this.state.loading) ? <Loading /> : this.renderResults()}
         </div>
 
@@ -48,7 +52,11 @@ const mapStateToProps = ({ query, results }) => ({
   results
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  queryPlaces: query => dispatch(queryPlaces(query))
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Result);

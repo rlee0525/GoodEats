@@ -51,6 +51,7 @@ export const createMarker = (place, isOpen) => {
     map: map,
     position: place.geometry.location,
     animation: google.maps.Animation.DROP,
+    id: place.id,
     icon
   });
 
@@ -69,7 +70,7 @@ export const createMarker = (place, isOpen) => {
     `<li id="iw-rating">${place.rating} <i class="material-icons" id="iw-star">grade</i></li>` +
     `</ul>` +
     '</div>';
-    
+  
   google.maps.event.addListener(marker, 'mouseover', function () {
     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
     infowindow.setContent(content);
@@ -80,6 +81,14 @@ export const createMarker = (place, isOpen) => {
     marker.setIcon(icon);
     infowindow.close();
   });
+
+  document.getElementById(`${marker.id}`).addEventListener('mouseover', function() {
+    google.maps.event.trigger(marker, 'mouseover');
+  });
+
+  document.getElementById(`${marker.id}`).addEventListener('mouseout', function () {
+    google.maps.event.trigger(marker, 'mouseout');
+  });
 };
 
 export const getRestaurants = (center, props) => {
@@ -87,7 +96,7 @@ export const getRestaurants = (center, props) => {
 
   let request = {
     location,
-    radius: '1000',
+    radius: '1500',
     type: ['restaurant']
   };
 
@@ -99,7 +108,7 @@ export const getRestaurants = (center, props) => {
       
       for (let i = 0; i < results.length; i++) {
         if (results[i].rating > 4.0) {
-          if (results[i].opening_hours.open_now) {
+          if (results[i].opening_hours && results[i].opening_hours.open_now) {
             createMarker(results[i], true);
           } else {
             createMarker(results[i], false);
