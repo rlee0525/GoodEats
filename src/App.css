@@ -204,6 +204,10 @@
 .red {
   color: red;
 }
+#search-again-container {
+  padding-left: 8px;
+  margin-bottom: 45px;
+}
 #result-list-direction-container {
   margin: 20px;
 }

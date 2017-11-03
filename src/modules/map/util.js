@@ -40,6 +40,8 @@ export const initMap = (center) => {
   service = new google.maps.places.PlacesService(map);
   infowindow = new google.maps.InfoWindow();
   map.setOptions({ styles: style['pastel'] });
+
+  document.getElementById('result-list-direction-container').innerHTML = "";
 };
 
 export const createMarker = (place, isOpen) => {

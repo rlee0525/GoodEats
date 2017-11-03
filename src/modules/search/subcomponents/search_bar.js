@@ -17,6 +17,10 @@ class SearchBar extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.history.location.pathname === "/result" && this.props.query.address) {
+      this.setState({ address: this.props.query.address});
+    }
+    
     let input = document.getElementById('address');
     let autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -44,7 +48,9 @@ class SearchBar extends React.Component {
     let query = { center, address };
 
     this.props.queryPlaces(query);
-    this.props.history.push('result');
+
+    let { history } = this.props;
+    if (history.location.pathname !== '/result') history.push('result');
   }
 
 

@@ -36,7 +36,7 @@ class Result extends React.Component {
     return (
       <div className="result-container">
         <div id="result-list-container">
-          <SearchBar {...this.props} />
+          <div id="search-again-container"><SearchBar {...this.props} /></div>
           <div id="result-list-direction-container"></div>
           {(this.state.loading) ? <Loading /> : this.renderResults()}
         </div>
