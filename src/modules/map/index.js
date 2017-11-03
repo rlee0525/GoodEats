@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { receiveResults } from '../result/actions';
+import { receiveResults, clearResults } from '../result/actions';
 import { initMap, getRestaurants } from './util';
 
 class Map extends React.Component {
@@ -14,6 +14,10 @@ class Map extends React.Component {
     if (this.props.query.center !== newProps.query.center) {
       getRestaurants(newProps.query.center, this.props);
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearResults();
   }
 
   render() {
@@ -31,7 +35,8 @@ const mapStateToProps = ({ query, results }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  receiveResults: results => dispatch(receiveResults(results))
+  receiveResults: results => dispatch(receiveResults(results)),
+  clearResults: () => dispatch(clearResults())
 });
 
 export default connect(

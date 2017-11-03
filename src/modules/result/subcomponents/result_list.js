@@ -1,15 +1,37 @@
 import React from 'react';
 
-class ResultList extends React.Component {
+class ResultListItem extends React.Component {
   render() {
     let result = this.props.result;
 
+    let url = "http://res.cloudinary.com/rlee0525/image/upload/v1509659284/no-image_mbwhht.png";
+    if (result.photos[0] !== 'undefined') {
+      url = result.photos[0].getUrl({
+        maxWidth: 200,
+        maxHeight: 200
+      });
+    }
+
+    let rating = this.props.result.rating;
+    rating = rating * 20;
+
     return (
-      <div>
-        {result.name}
+      <div className="result-list-item-container">
+        <img src={url} alt="res-img" className="result-item-img" />
+        <div className="restaurant-info-container">
+          <div className="restaurant-name">{result.name}</div>
+          <div className="star-ratings-css">
+            <div className="star-ratings-css-top" style={{"width": `${rating}%`}}>
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div className="star-ratings-css-bottom">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export { ResultList };
+export { ResultListItem };

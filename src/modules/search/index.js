@@ -42,8 +42,9 @@ class Search extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let center = this.state.center;
+    if (!center) return;
     let query = { center };
-
+    
     this.props.queryPlaces(query);
     this.props.history.push('result');
   }
@@ -84,12 +85,13 @@ class Search extends React.Component {
   }
 }
 
-const mapStateToProps = ({ query }) => ({
-  query
+const mapStateToProps = ({ query, results }) => ({
+  query,
+  results
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  queryPlaces: query => dispatch(queryPlaces(query)),
+  queryPlaces: query => dispatch(queryPlaces(query))
 });
 
 export default connect(
