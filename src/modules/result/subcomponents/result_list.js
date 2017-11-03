@@ -12,14 +12,26 @@ class ResultListItem extends React.Component {
       });
     }
 
-    let rating = this.props.result.rating;
+    let rating = result.rating;
     rating = rating * 20;
+    
+    let vicinity = result.vicinity;
+    let openNow = result.opening_hours.open_now;
+    let priceLevel = result.price_level;
+    let price = "";
+    
+    for (let i = 0; i < priceLevel; i++) {
+      price += "$";
+    }
+
+    let status = openNow ? <span className="green">Open</span> : <span className="red">Closed</span>;
 
     return (
       <div className="result-list-item-container">
         <img src={url} alt="res-img" className="result-item-img" />
         <div className="restaurant-info-container">
           <div className="restaurant-name">{result.name}</div>
+
           <div className="star-ratings-css">
             <div className="star-ratings-css-top" style={{"width": `${rating}%`}}>
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -27,6 +39,13 @@ class ResultListItem extends React.Component {
             <div className="star-ratings-css-bottom">
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
+          </div>
+
+          <div className="restaurant-address">{vicinity}</div>
+          <div className="restaurant-more-info">
+            <div className="restaurant-price">{price}</div>
+            <div className="restaurant-divider">||</div>
+            <div className="restaurant-status">{status}</div>
           </div>
         </div>
       </div>

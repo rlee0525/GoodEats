@@ -142,10 +142,11 @@
 .restaurant-info-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .restaurant-name {
   font-size: 18px;
-  padding-bottom: 5px;
+  padding-bottom: 7px;
 }
 .star-ratings-css {
   unicode-bidi: bidi-override;
@@ -171,6 +172,32 @@
   padding: 0;
   display: block;
   z-index: 0;
+}
+.restaurant-address{
+  font-size: 14px;
+  padding-top: 12px;
+}
+.restaurant-more-info {
+  display: flex;
+  flex-direction: row;
+  padding-top: 7px;
+  font-size: 14px;
+  padding-bottom: 20px;
+}
+.restaurant-price {
+  padding-left: 10px;
+}
+.restaurant-divider{
+  padding-left: 10px;
+}
+.restaurant-status {
+  padding-left: 10px;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
 }
 
 /* Loading */

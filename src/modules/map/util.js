@@ -42,12 +42,16 @@ export const initMap = (center) => {
   map.setOptions({ styles: style['pastel'] });
 };
 
-export const createMarker = (place) => {
+export const createMarker = (place, isOpen) => {
+  let icon = isOpen ? 
+    'http://maps.google.com/mapfiles/ms/icons/green-dot.png' : 
+    'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+
   let marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
     animation: google.maps.Animation.DROP,
-    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    icon
   });
 
   let url = "http://res.cloudinary.com/rlee0525/image/upload/v1509659284/no-image_mbwhht.png";
@@ -67,13 +71,13 @@ export const createMarker = (place) => {
     '</div>';
     
   google.maps.event.addListener(marker, 'mouseover', function () {
-    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
     infowindow.setContent(content);
     infowindow.open(map, this);
   });
 
   google.maps.event.addListener(marker, 'mouseout', function () {
-    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+    marker.setIcon(icon);
     infowindow.close();
   });
 };
@@ -94,7 +98,13 @@ export const getRestaurants = (center, props) => {
       props.receiveResults(results);
       
       for (let i = 0; i < results.length; i++) {
-        if (results[i].rating > 4.0) createMarker(results[i]);
+        if (results[i].rating > 4.0) {
+          if (results[i].opening_hours.open_now) {
+            createMarker(results[i], true);
+          } else {
+            createMarker(results[i], false);
+          }
+        }
       }
     }
   });
