@@ -12,6 +12,14 @@ class ResultListItem extends React.Component {
   getDirections() {
     document.getElementById('result-list-direction-container').innerHTML = "";
     
+    let containers = document.getElementsByClassName('result-list-item-container');
+    for (let i = 0; i < containers.length; i++) {
+      console.log(containers[i]);
+      containers[i].style.backgroundColor = 'white';
+    }
+
+    document.getElementById(`${this.props.result.id}`).style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+
     let { query, result } = this.props;
     let directionsService = new google.maps.DirectionsService();
     let directionsDisplay = new google.maps.DirectionsRenderer();
