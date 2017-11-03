@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import Map from '../map';
 import Loading from '../loading';
-import { SearchBar } from '../search/subcomponents';
 import { queryPlaces } from '../search/actions';
 import { ResultListItem } from './subcomponents';
+import { SearchBar } from '../search/subcomponents';
 
 class Result extends React.Component {
   constructor(props) {
